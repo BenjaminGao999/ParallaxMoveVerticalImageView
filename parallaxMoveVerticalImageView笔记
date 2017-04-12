@@ -1,0 +1,49 @@
+1、继承ImageView，自定义ImagaView，明确的几点知识
+① 自定义View基本知识：测量、布局、绘制
+② 图形变化：画布、Bitmap、画笔、Drawable
+
+2、需求1：针对一张宽高比合适的图片，宽度匹配父窗体，维持位图原始比例
+       ① 指定ImageView的尺寸
+       ② 缩放Bitmap至指定尺寸
+       ③ 绘制bitmap
+
+3、ImageView的宽度和高度由父View指定。
+      ① 自定义ImageView在onMeasure方法里修改ImageView的高度
+            @Override
+               protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+           //        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+                   MeasureSpecUtil.measureSpecInfo(widthMeasureSpec, heightMeasureSpec, TAG);
+           //        setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec), MeasureSpec.getSize(heightMeasureSpec));
+                   Rect bounds = getDrawable().copyBounds();
+                   Log.i(TAG, "onMeasure: bounds width =" + bounds.width());
+                   Log.i(TAG, "onMeasure: bounds height =" + bounds.height());
+                   float scaleFactor = bounds.width() * 1.0f / bounds.height();
+                   float newHeight = MeasureSpec.getSize(widthMeasureSpec) * 1.0f / scaleFactor;
+                   setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec), (int) newHeight);
+               }
+      ② 父View为ImageView指定高度
+
+      private void resetImageViewSize() {
+        WidthMatchParentImageView matchParentImageView = (WidthMatchParentImageView) findViewById(R.id.wmpiv);
+        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) matchParentImageView.getLayoutParams();
+        int width = (int) (getResources().getDisplayMetrics().widthPixels - 2 * getResources().getDimension(R.dimen.activity_horizontal_margin));
+        layoutParams.width = width;
+        int intrinsicWidth = matchParentImageView.getDrawable().getIntrinsicWidth();
+        int intrinsicHeight = matchParentImageView.getDrawable().getIntrinsicHeight();
+        Log.i(TAG, "resetImageViewSize: intrinsicWidth = " + intrinsicWidth);
+        Log.i(TAG, "resetImageViewSize: intrisicHeight = " + intrinsicHeight);
+        float scaleFractor = intrinsicWidth * 1.0f / intrinsicHeight;
+        int newHeight = (int) (width / scaleFractor);
+        layoutParams.height = newHeight;
+        matchParentImageView.setLayoutParams(layoutParams);
+     }
+
+4、Drawable
+① https://developer.android.google.cn/reference/android/graphics/drawable/Drawable.html
+
+② 在ImageView外部获取src 的Drawable 对象的内在宽高
+The setBounds(Rect) method must be called to tell the Drawable where it is drawn and how large it should be.
+All Drawables should respect the requested size, often simply by scaling their imagery.
+A client can find the preferred size for some Drawables with the getIntrinsicHeight() and getIntrinsicWidth() methods.
+
+
