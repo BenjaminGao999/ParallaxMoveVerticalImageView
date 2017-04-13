@@ -72,7 +72,7 @@ public class RoundRectMoveVerticalImageView extends ImageView {
     protected void onDraw(Canvas canvas) {
         Bitmap bitmap = drawableToBitmap(getDrawable());
         Bitmap scaledBitmap = bitmap.createScaledBitmap(bitmap, newWidth, newHeight, false);
-        Bitmap newBitmap = Bitmap.createBitmap(scaledBitmap, 0, topY, newWidth, newHeightHelf);
+        Bitmap newBitmap = Bitmap.createBitmap(scaledBitmap, 0, topY, newWidth, newHeightHelf);//第5个参数：height，指的是长度，而不是srcBitmap的相对像素坐标。
         canvas.clipPath(path);
         canvas.drawBitmap(newBitmap, 0, 0, new Paint());
     }
