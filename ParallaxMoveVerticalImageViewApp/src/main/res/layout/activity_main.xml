@@ -16,4 +16,26 @@
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"
         android:src="@drawable/soilder" />
+
+    <com.gaos.paralaxmoveverticalimageview.view.PathView
+        android:id="@+id/pathview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/wmpiv"
+        android:layout_marginTop="10dp" />
+
+    <com.gaos.paralaxmoveverticalimageview.view.RoundRectImageView
+        android:id="@+id/rriv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pathview"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:src="@drawable/soilder" />
+
+    <com.gaos.paralaxmoveverticalimageview.view.RoundRectMoveVerticalImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rriv"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/soilder" />
 </RelativeLayout>

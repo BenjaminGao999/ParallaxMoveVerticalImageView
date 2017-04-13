@@ -1,5 +1,6 @@
 package com.gaos.paralaxmoveverticalimageview;
 
+import android.graphics.Canvas;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,8 +16,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        resetImageViewSize();
+//        resetImageViewSize();
     }
+
 
     private void resetImageViewSize() {
         WidthMatchParentImageView matchParentImageView = (WidthMatchParentImageView) findViewById(R.id.wmpiv);
@@ -32,4 +34,5 @@ public class MainActivity extends AppCompatActivity {
         layoutParams.height = newHeight;
         matchParentImageView.setLayoutParams(layoutParams);
     }
+
 }

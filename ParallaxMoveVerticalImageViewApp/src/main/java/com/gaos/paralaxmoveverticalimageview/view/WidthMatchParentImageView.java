@@ -14,6 +14,7 @@ import com.gaos.paralaxmoveverticalimageview.utils.MeasureSpecUtil;
  * Author:　Created by benjamin
  * DATE :  2017/4/12 15:59
  * versionCode:　1.0.0
+ * 手动指定ImageView的宽度。
  */
 
 public class WidthMatchParentImageView extends ImageView {

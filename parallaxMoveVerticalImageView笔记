@@ -1,6 +1,6 @@
 1、继承ImageView，自定义ImagaView，明确的几点知识
 ① 自定义View基本知识：测量、布局、绘制
-② 图形变化：画布、Bitmap、画笔、Drawable
+② 图形变化：画布、Bitmap、画笔、Drawable、Path
 
 2、需求1：针对一张宽高比合适的图片，宽度匹配父窗体，维持位图原始比例
        ① 指定ImageView的尺寸
@@ -45,5 +45,8 @@
 The setBounds(Rect) method must be called to tell the Drawable where it is drawn and how large it should be.
 All Drawables should respect the requested size, often simply by scaling their imagery.
 A client can find the preferred size for some Drawables with the getIntrinsicHeight() and getIntrinsicWidth() methods.
+
+5、Canvas
+① clip 编辑|裁剪
 
 
